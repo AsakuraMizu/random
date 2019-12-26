@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
+        <link rel="stylesheet" href="style.css"/>
+        <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+        <script src="//cdnjs.loli.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <div class="mdui-dialog" id="orz">
+            <div class="mdui-dialog-title">中奖<del>枪决</del>名单生成器</div>
+            <div class="mdui-dialog-content">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">请在此输入名单，每行一个</label>
+                    <textarea class="mdui-textfield-input" rows="10" id="list"></textarea>
+                </div>
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">随机数种子（不填表示则随机生成）</label>
+                    <input class="mdui-textfield-input" type="number" id="seed"/>
+            </div>
+            <div class="mdui-dialog-actions">
+                <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
+            </div>
+        </div>
+        <script>
+            var $$ = mdui.JQ;
+            var init = new mdui.Dialog("#orz", {modal: true});
+            var list, seed;
+            function run() {
+                document.
+            }
+            document.getElementById('orz').addEventListener('confirm.mdui.dialog', function() {
+                seed = Number($$('#seed')[0].value);
+                list = $$('#list')[0].value.split('\n');
+
+            });
+            init.open();
+        </script>
+    </body>
+</html>
