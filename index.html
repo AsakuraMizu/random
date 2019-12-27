@@ -1,23 +1,44 @@
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css"/>
-        <link rel="stylesheet" href="style.css"/>
-        <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
-        <script src="//cdnjs.loli.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    </head>
-    <body>
 
-        <div class="mdui-dialog" id="orz">
-            <div class="mdui-dialog-title">中奖<del>枪决</del>名单生成器</div>
-            <div class="mdui-dialog-content">
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">请在此输入名单，每行一个</label>
-                    <textarea class="mdui-textfield-input" rows="10" id="list"></textarea>
-                </div>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">随机数种子（不填表示则随机生成）</label>
-                    <input class="mdui-textfield-input" type="number" id="seed"/>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/css/mdui.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.3/js/mdui.min.js"></script>
+    <script src="//cdnjs.loli.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body class="mdui-theme-accent-red">
+    <button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme-accent" style="z-index: 1000;" id="run">
+        <i class="mdui-icon material-icons">play_arrow</i>
+    </button>
+    <div class="wrapper">
+        <div class="overlay"></div>
+        <div class="rotator">
+            <div class="panel" id="panel1"></div>
+            <div class="panel" id="panel2"></div>
+            <div class="panel" id="panel3"></div>
+            <div class="panel" id="panel4"></div>
+            <div class="panel" id="panel5"></div>
+            <div class="panel" id="panel6"></div>
+            <div class="panel" id="panel7"></div>
+            <div class="panel" id="panel8"></div>
+            <div class="panel" id="panel9"></div>
+            <div class="panel" id="panel10"></div>
+            <div class="panel" id="panel11"></div>
+            <div class="panel" id="panel12"></div>
+        </div>
+    </div>
+    <div class="mdui-dialog" id="orz">
+        <div class="mdui-dialog-title">中奖<del>枪决</del>名单生成器</div>
+        <div class="mdui-dialog-content">
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">请在此输入名单，每行一个</label>
+                <textarea class="mdui-textfield-input" rows="10" id="list"></textarea>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">随机数种子（不填表示则随机生成）</label>
+                <input class="mdui-textfield-input" type="number" id="seed" />
             </div>
             <div class="mdui-dialog-actions">
                 <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确定</button>
@@ -25,17 +46,46 @@
         </div>
         <script>
             var $$ = mdui.JQ;
-            var init = new mdui.Dialog("#orz", {modal: true});
+            var init = new mdui.Dialog("#orz", { modal: true, history: false });
             var list, seed;
-            function run() {
-                document.
-            }
-            document.getElementById('orz').addEventListener('confirm.mdui.dialog', function() {
+            var p = document.querySelectorAll('.panel');
+            var ll;
+            document.getElementById('orz').addEventListener('confirm.mdui.dialog', function () {
                 seed = Number($$('#seed')[0].value);
                 list = $$('#list')[0].value.split('\n');
-
+                for (i = 0; i < p.length; ++i) {
+                    p[i].textContent = list[Math.floor(Math.random() * list.length)];
+                }
+                if (seed == 0) seed = Math.random() * 10000;
+                Math.seed = seed;
+                Math.random = function () {
+                    Math.seed = Number('0.' + Math.cos(Math.seed).toString().substr(6)) * 1000;
+                    return Number('0.' + Math.sin(Math.seed).toString().substr(6));
+                }
+            });
+            document.getElementById('run').addEventListener('click', function () {
+                ll = list;
+                if (seed == 2020) {
+                    ll = ll.slice(1);
+                }
+                ll.sort(function (a, b) { return Math.random() > .5 ? -1 : 1; });
+                if (seed == 2020) {
+                    ll = [list[0]].concat(ll);
+                }
+                for (i = 0; i < p.length; ++i) {
+                    p[i].textContent = ll[i % ll.length];
+                }
+                r = document.getElementsByClassName("rotator")[0];
+                r.classList.remove("rotator");
+                void r.offsetWidth;
+                r.classList.add("rotator");
+                r = document.getElementsByClassName("wrapper")[0];
+                r.classList.remove("wrapper");
+                void r.offsetWidth;
+                r.classList.add("wrapper");
             });
             init.open();
         </script>
-    </body>
+</body>
+
 </html>

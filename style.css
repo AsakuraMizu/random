@@ -138,6 +138,50 @@ body {
   background-color: #8258ed;
   transform: rotateX(0deg) translateZ(121.29165125px);
 }
+#panel2 {
+  background-color: #cc58ed;
+  transform: rotateX(30deg) translateZ(121.29165125px);
+}
+#panel3 {
+  background-color: #ed58c3;
+  transform: rotateX(60deg) translateZ(121.29165125px);
+}
+#panel4 {
+  background-color: #ed5879;
+  transform: rotateX(90deg) translateZ(121.29165125px);
+}
+#panel5 {
+  background-color: #ed8258;
+  transform: rotateX(120deg) translateZ(121.29165125px);
+}
+#panel6 {
+  background-color: #edcc58;
+  transform: rotateX(150deg) translateZ(121.29165125px);
+}
+#panel7 {
+  background-color: #c3ed58;
+  transform: rotateX(180deg) translateZ(121.29165125px);
+}
+#panel8 {
+  background-color: #79ed58;
+  transform: rotateX(210deg) translateZ(121.29165125px);
+}
+#panel9 {
+  background-color: #58ed82;
+  transform: rotateX(240deg) translateZ(121.29165125px);
+}
+#panel10 {
+  background-color: #58edcc;
+  transform: rotateX(270deg) translateZ(121.29165125px);
+}
+#panel11 {
+  background-color: #58c3ed;
+  transform: rotateX(300deg) translateZ(121.29165125px);
+}
+#panel12 {
+  background-color: #5879ed;
+  transform: rotateX(330deg) translateZ(121.29165125px);
+}
 @keyframes textFade {
   0% {
     top: 100px;
